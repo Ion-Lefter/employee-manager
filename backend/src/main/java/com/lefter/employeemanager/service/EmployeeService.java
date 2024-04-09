@@ -3,6 +3,7 @@ package com.lefter.employeemanager.service;
 import com.lefter.employeemanager.exception.UserNotFoundException;
 import com.lefter.employeemanager.model.Employee;
 import com.lefter.employeemanager.repository.EmployeeRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,7 @@ public class EmployeeService {
     public Employee findEmployeeByID(Long id){
         return employeeRepository.findEmployeeById(id).orElseThrow(() -> new UserNotFoundException("User by id: " + id +" not found!"));
     }
+    @Transactional
     public void deleteEmployee(Long id){
         employeeRepository.deleteEmployeeById(id);
     }
